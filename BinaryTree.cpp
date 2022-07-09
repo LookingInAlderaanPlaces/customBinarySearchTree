@@ -16,11 +16,19 @@ void BinaryTree<ItemType>::insertNode(ItemType& input){
             {
                 tempPtr = tempPtr->getLeft;
             }
-            nodePtr currPtr = new Node<ItemType>;
-            tempPtr->setLeft(currPtr);
-            currPtr->setData(input);
-            currPtr->setLeft(tempPtr->getLeft());
-            currPtr->setRight(tempPtr->getRight());
+            if (input < tempPtr->getData())
+            {
+                nodePtr currPtr = new Node<ItemType>;
+                tempPtr->setLeft(currPtr);
+                currPtr->setData(input);
+                currPtr->setLeft(tempPtr->getLeft());
+                currPtr->setRight(tempPtr->getRight());
+                ++itemCount;
+            }
+            else
+            {
+                std::cout << "Value already exists!";
+            }
         }
         else if (input > tempPtr->getData())
         {
@@ -28,11 +36,19 @@ void BinaryTree<ItemType>::insertNode(ItemType& input){
             {
                 tempPtr = tempPtr->getRight();
             }
-            nodePtr currPtr = new Node<ItemType>;
-            tempPtr->setRight(currPtr);
-            currPtr->setData(input);
-            currPtr->setLeft(tempPtr->getLeft());
-            currPtr->setRight(tempPtr->getRight());
+            if (input > tempPtr->getData())
+            {
+                nodePtr currPtr = new Node<ItemType>;
+                tempPtr->setRight(currPtr);
+                currPtr->setData(input);
+                currPtr->setLeft(tempPtr->getLeft());
+                currPtr->setRight(tempPtr->getRight());
+                ++itemCount;
+            }
+            else
+            {
+                std::cout << "Value already exists!";
+            }
         }
         else{
             std::cout << "Value already exists!";
